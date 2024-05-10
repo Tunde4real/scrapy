@@ -36,7 +36,7 @@ scrapy -h
 ### ..
 see more information on a command
 ```console
-scrapy {sommand} -h
+scrapy {command} -h
 ```
 ### ..
 run a quick benchmark test
@@ -48,7 +48,7 @@ scrapy bench
 
 Run spider file with name provided. The name of the spider can be without the ending .py. You must navigate to project directory to run
 ```console
-scrapy crawl spider_name
+scrapy crawl {spider_name}
 ```
 ### ..
 crawls a spider and add data into csv file provided without overwriting the already present data if any.
