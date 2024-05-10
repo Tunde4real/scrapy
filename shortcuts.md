@@ -1,70 +1,71 @@
 # Global Commands
 # ...
-starts a new scrapy project ```console 
+start a new scrapy project
+```console 
 scrapy startproject {project_name}
 ```
 
+generate a new spider based on predefined template
 ```console
 scrapy genspider {spider_name} {site_domain}
 ```
-generates a new spider based on predefined template
 
+start a scrapy shell
 ```console 
 scrapy shell
 ```
-starts a scrapy shell
 
+to examine a url for the html returned.
 ```console
 scrapy shell {url}
 ```
-to examine a url for the html returned.
 
+open the url in a browser
 ```console
 scrapy view {url}
 ```
-opens the url in a browser
 
+download the html content returned on the url and save to stndard output
 ```console
 scrapy fetch {url}
 ```
-downloads the html content returned on the url and save to stndard output
 
-```console
-scrapy bench
-```
-runs a quick benchmark test
-
+see all available commands
 ```console
 scrapy -h
 ```
-see all available commands
 
+see more information on a command
 ```console
 scrapy {sommand} -h
 ```
-see more information on a command
+
+run a quick benchmark test
+```console
+scrapy bench
+```
 # ...
 # ...
 # ...
 # Project only commands
 
+Run spider file with name provided. The name of the spider can be without the ending .py. You must navigate to project directory to run
 ```console
 scrapy crawl spider_name
 ```
-Runs spider file with name provided. The name of the spider can be without the ending .py. You must navigate to project directory to run
 
+crawls a spider and add data into csv file provided without overwriting the already present data if any.
 ```console
 scrapy crawl {spider name} -o {csv file name}
 ```
-crawls a spider and add data into csv file provided without overwriting the already present data if any.
 
+crawls a spider and add data into csv file, overwriting any data present in the csv file
 ```console 
 crapy crawl {spider name} -O {csv file name}
 ```
-crawls a spider and add data into csv file, overwriting any data present in the csv file
 
+list all available spiders
 ```console
 scrapy list
 ```
-list all available spiders
 
