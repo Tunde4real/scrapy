@@ -1,10 +1,8 @@
 # Global Commands
-.
-.
-```console 
+# ...
+starts a new scrapy project ```console 
 scrapy startproject {project_name}
 ```
-starts a new scrapy project
 
 ```console
 scrapy genspider {spider_name} {site_domain}
@@ -45,9 +43,9 @@ see all available commands
 scrapy {sommand} -h
 ```
 see more information on a command
-.
-.
-.
+# ...
+# ...
+# ...
 # Project only commands
 
 ```console
