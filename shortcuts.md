@@ -51,14 +51,19 @@ Run spider file with name provided. The name of the spider can be without the en
 scrapy crawl {spider_name}
 ```
 ### ..
-crawls a spider and add data into csv file provided without overwriting the already present data if any.
+crawl a spider and add data into csv file provided without overwriting the already present data if any.
 ```console
 scrapy crawl {spider name} -o {csv file name}
 ```
 ### ..
-crawls a spider and add data into csv file, overwriting any data present in the csv file
+crawl a spider and add data into csv file, overwriting any data present in the csv file
 ```console 
-crapy crawl {spider name} -O {csv file name}
+scrapy crawl {spider name} -O {csv file name}
+```
+### ..
+crawl a spider, save to csv, save all scrapy log to logfile
+```console 
+scrapy crawl {spider name} -O {csv file name} --logfile logfile_name.log
 ```
 ### ..
 list all available spiders
