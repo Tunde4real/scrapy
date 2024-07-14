@@ -14,10 +14,8 @@ data = {}
 class StackOverflowSpider(scrapy.Spider):
     name = "stack-overflow"
     allowed_domains = ["stackoverflow.com"]
-    # start_urls = [f"https://stackoverflow.com/users{i}" for i in range(1, 675997)]
-    # start_urls = ['https://stackoverflow.com/users?page=1&tab=reputation&filter=all']
-    start_urls = ['https://stackoverflow.com/users?tab=Reputation&filter=week']
-    # start_urls = ['https://stackoverflow.com/users?tab=Reputation&filter=year']
+    # start_urls = ['https://stackoverflow.com/users?page=21&tab=reputation&filter=all']
+    start_urls = ['https://stackoverflow.com/users?tab=Reputation&filter=all']
     
 
     def __init__(self, name: str | None = None, **kwargs: Any):
@@ -32,9 +30,10 @@ class StackOverflowSpider(scrapy.Spider):
     #         "Sec-Ch-Ua-Platform": "\"Linux\"",
     #         "User-Agent": "Mozilla/5.0 (Linux; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
     #         }
+    #     url = 'https://ip.smartproxy.com/json'
+    #     proxy = f"http://sp8yw5upp9:B2qZllcA2p6Z_x4nrz@gate.smartproxy.com:10002"
     #     for url in self.start_urls:
-    #         yield scrapy.Request(url, headers=custom_headers, callback=self.parse, meta={"proxy": "http://51.89.255.67"})
- 
+    #         yield scrapy.Request(url, headers=custom_headers, callback=self.parse, meta={"proxy": proxy})
 
 
     def parse(self, response):
@@ -42,11 +41,10 @@ class StackOverflowSpider(scrapy.Spider):
         """
         for user in response.xpath('//*[@id="user-browser"]/div[1]/div'): #.getall() here will return a str of all elements
             profile_link = user.css('a::attr("href")').get()
-            # name = user.xpath('div[2]/a/text()').get().strip()
-            name, location = user.xpath('div[2]/text()').get().strip().split('\n')
             location = user.xpath('div[2]/span/text()').get()
+            # name = user.xpath('div[2]/a/text()').get().strip()
             if location != None: location = location.strip()
-            data[response.urljoin(profile_link)] = [name, location]
+            data[response.urljoin(profile_link)] = location
             self.logger.info(f'Scraping for user {profile_link}')
             yield response.follow(profile_link, callback=self.parse_user)
         
@@ -68,7 +66,7 @@ class StackOverflowSpider(scrapy.Spider):
         membership = response.xpath('//*[@id="mainbar-full"]/div[1]/div[1]/div/ul[1]/li[1]/div/div[2]/span/text()').get().strip()
         # if self.location == None: self.location = response.xpath('//*[@id="mainbar-full"]/div[1]/div[1]/div/ul[2]/li[2]/div/div[2]/text()').get()
         # if self.location != None: self.location = self.location.strip()
-        name, location = data[response.url]
+        location = data[response.url]
         reputation = response.xpath('//*[@id="stats"]/div[2]/div/div[1]/div/text()').get().strip()
         reached = response.xpath('//*[@id="stats"]/div[2]/div/div[2]/div/text()').get().strip()
         answers = response.xpath('//*[@id="stats"]/div[2]/div/div[3]/div/text()').get().strip()
@@ -85,8 +83,7 @@ class StackOverflowSpider(scrapy.Spider):
             score = tag.xpath('div/div[2]/div/div/div/text()').get().strip()
             tags += f'{name} {score},'
         yield{
-            "Profile Link" : response.url,
-            "Name" : name,
+            "Name" : ' '.join(response.url.split('/')[-1].split('-')),
             "Membership" : membership,
             "Location" : location,
             "Reputation" : reputation,
@@ -96,5 +93,6 @@ class StackOverflowSpider(scrapy.Spider):
             "Gold Badges" : gold_badges,
             "Silver Badges" : silver_badges,
             "Bronze Badges" : bronze_badges,
-            "Tags" : tags
+            "Tags" : tags,
+            "Profile Link" : response.url,
         }
