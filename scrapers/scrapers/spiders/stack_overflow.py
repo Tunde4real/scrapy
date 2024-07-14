@@ -31,7 +31,7 @@ class StackOverflowSpider(scrapy.Spider):
     #         "User-Agent": "Mozilla/5.0 (Linux; x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
     #         }
     #     url = 'https://ip.smartproxy.com/json'
-    #     proxy = f"http://sp8yw5upp9:B2qZllcA2p6Z_x4nrz@gate.smartproxy.com:10002"
+    #     proxy = f"http://{username}:{password}@gate.smartproxy.com:10002"
     #     for url in self.start_urls:
     #         yield scrapy.Request(url, headers=custom_headers, callback=self.parse, meta={"proxy": proxy})
 

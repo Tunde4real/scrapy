@@ -113,7 +113,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapers.smartproxy_auth.ProxyMiddleware': 100,
 }
 
-SMARTPROXY_USER = 'sp8yw5upp9' ## Smartproxy Username (Sub-user)
-SMARTPROXY_PASSWORD = 'B2qZllcA2p6Z_x4nrz' ## Password for your user
+SMARTPROXY_USER = '' ## Smartproxy Username (Sub-user)
+SMARTPROXY_PASSWORD = '' ## Password for your user
 SMARTPROXY_ENDPOINT = 'gate.smartproxy.com' ## Endpoint you'd like to use
 SMARTPROXY_PORT = '10001' ## Port of the endpoint you are using.
