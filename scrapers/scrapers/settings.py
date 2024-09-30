@@ -20,7 +20,7 @@ NEWSPIDER_MODULE = "scrapers.spiders"
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 8
+# CONCURRENT_REQUESTS = 8
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -54,13 +54,14 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Added
 # ROTATING_PROXY_LIST_PATH = '/Users/ibrahimaderinto/Desktop/projects/scrapy/scrapers/proxies.txt'
+ROTATING_PROXY_LIST_PATH = "../../proxies.txt"
 
-# DOWNLOADER_MIDDLEWARES = {
-#     # ...
-#     'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
-#     # 'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
-#     # ...
-# }
+DOWNLOADER_MIDDLEWARES = {
+    # ...
+    'scrapy_proxy_pool.middlewares.ProxyPoolMiddleware': 610,
+    'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
+    # ...
+}
 
 
 
@@ -108,12 +109,12 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-    'scrapers.smartproxy_auth.ProxyMiddleware': 100,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+#     'scrapers.smartproxy_auth.ProxyMiddleware': 100,
+# }
 
-SMARTPROXY_USER = '' ## Smartproxy Username (Sub-user)
-SMARTPROXY_PASSWORD = '' ## Password for your user
-SMARTPROXY_ENDPOINT = 'gate.smartproxy.com' ## Endpoint you'd like to use
-SMARTPROXY_PORT = '10001' ## Port of the endpoint you are using.
+# SMARTPROXY_USER = '' ## Smartproxy Username (Sub-user)
+# SMARTPROXY_PASSWORD = '' ## Password for your user
+# SMARTPROXY_ENDPOINT = 'gate.smartproxy.com' ## Endpoint you'd like to use
+# SMARTPROXY_PORT = '10001' ## Port of the endpoint you are using.
